@@ -16,4 +16,11 @@ class PropertyController extends Controller
             'data' => Property::all()
         ]);
     }
+
+    public function store(PropertyRequest $request) : JsonResponse
+    {
+        return response()->json([
+            'data' => Property::create($request->all())
+        ], 201);
+    }
 }

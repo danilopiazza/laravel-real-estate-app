@@ -33,4 +33,29 @@ class PropertiesTest extends TestCase
             ]
         ]);
     }
+
+    /** @test */
+    public function can_store_a_property()
+    {
+        // Build a non-persisted Property factory model.
+        $newProperty = Property::factory()->make();
+
+        $response = $this->postJson(
+            route('api.properties.store'),
+            $newProperty->toArray()
+        );
+        // We assert that we get back a status 201:
+        // Resource Created for now.
+        $response->assertCreated();
+        // Assert that at least one column gets returned from the response
+        // in the format we need.
+        $response->assertJson([
+            'data' => ['type' => $newProperty->type]
+        ]);
+        // Assert the table properties contains the factory we made.
+        $this->assertDatabaseHas(
+            'properties',
+            $newProperty->toArray()
+        );
+    }
 }

@@ -23,3 +23,8 @@ Route::get(
     'properties',
     [PropertyController::class, 'index']
 )->name('api.properties.index');
+
+Route::post(
+    'properties',
+    [PropertyController::class, 'store']
+)->name('api.properties.store');
