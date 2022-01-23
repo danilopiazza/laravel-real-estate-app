@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PropertyRequest;
 use App\Models\Property;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class PropertyController extends Controller
 {
@@ -28,5 +29,12 @@ class PropertyController extends Controller
         return response()->json([
             'data' => tap($property)->update($request->all())
         ]);
+    }
+
+    public function destroy(Property $property) : Response
+    {
+        $property->delete();
+
+        return response([], 204);
     }
 }

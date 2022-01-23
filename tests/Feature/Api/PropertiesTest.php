@@ -85,4 +85,23 @@ class PropertiesTest extends TestCase
             $newProperty->toArray()
         );
     }
+
+    /** @test */
+    public function can_delete_a_property()
+    {
+        $existingProperty = Property::factory()->create();
+
+        $this->deleteJson(
+            route($this->routePrefix . 'destroy', $existingProperty)
+        )->assertNoContent();
+        // You can also use assertStatus(204) instead of assertNoContent()
+        // in case you're using a Laravel version that does not have this assertion.
+        // (I believe it is available from v7.x onwards)
+
+        // Finally we just assert the `properties` table does not contain the model that we just deleted.
+        $this->assertDatabaseMissing(
+            'properties',
+            $existingProperty->toArray()
+        );
+    }
 }

@@ -33,3 +33,8 @@ Route::put(
     'properties/{property}',
     [PropertyController::class, 'update']
 )->name('api.properties.update');
+
+Route::delete(
+    'properties/{property}',
+    [PropertyController::class, 'destroy']
+)->name('api.properties.destroy');
