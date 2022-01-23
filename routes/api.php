@@ -28,3 +28,8 @@ Route::post(
     'properties',
     [PropertyController::class, 'store']
 )->name('api.properties.store');
+
+Route::put(
+    'properties/{property}',
+    [PropertyController::class, 'update']
+)->name('api.properties.update');

@@ -30,6 +30,17 @@ class PropertyRequestTest extends TestCase
             route($this->routePrefix . 'store'),
             $property->toArray()
         )->assertJsonValidationErrors($validatedField);
+
+        // Update assertion
+        $existingProperty = Property::factory()->create();
+        $newProperty = Property::factory()->make([
+            $validatedField => $brokenRule
+        ]);
+
+        $this->putJson(
+            route($this->routePrefix . 'update', $existingProperty),
+            $newProperty->toArray()
+        )->assertJsonValidationErrors($validatedField);
     }
 
     /**
@@ -48,6 +59,17 @@ class PropertyRequestTest extends TestCase
         $this->postJson(
             route($this->routePrefix . 'store'),
             $property->toArray()
+        )->assertJsonValidationErrors($validatedField);
+
+        // Update assertion
+        $existingProperty = Property::factory()->create();
+        $newProperty = Property::factory()->make([
+            $validatedField => $brokenRule
+        ]);
+
+        $this->putJson(
+            route($this->routePrefix . 'update', $existingProperty),
+            $newProperty->toArray()
         )->assertJsonValidationErrors($validatedField);
     }
 
@@ -68,6 +90,17 @@ class PropertyRequestTest extends TestCase
             route($this->routePrefix . 'store'),
             $property->toArray()
         )->assertJsonValidationErrors($validatedField);
+
+        // Update assertion
+        $existingProperty = Property::factory()->create();
+        $newProperty = Property::factory()->make([
+            $validatedField => $brokenRule
+        ]);
+
+        $this->putJson(
+            route($this->routePrefix . 'update', $existingProperty),
+            $newProperty->toArray()
+        )->assertJsonValidationErrors($validatedField);
     }
 
     /**
@@ -86,6 +119,17 @@ class PropertyRequestTest extends TestCase
         $this->postJson(
             route($this->routePrefix . 'store'),
             $property->toArray()
+        )->assertJsonValidationErrors($validatedField);
+
+        // Update assertion
+        $existingProperty = Property::factory()->create();
+        $newProperty = Property::factory()->make([
+            $validatedField => $brokenRule
+        ]);
+
+        $this->putJson(
+            route($this->routePrefix . 'update', $existingProperty),
+            $newProperty->toArray()
         )->assertJsonValidationErrors($validatedField);
     }
 }
